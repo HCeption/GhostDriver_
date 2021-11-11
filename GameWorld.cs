@@ -12,8 +12,6 @@ namespace GhostDriver_
         private SpriteBatch spriteBatch;
         private Texture2D road;
         private Player player;
-        private Enemy enemy;
-        private Wrench wrench;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> newObjects = new List<GameObject>(); 
         private static List<GameObject> deleteObjects = new List<GameObject>();
@@ -30,8 +28,6 @@ namespace GhostDriver_
         public static float gameScale = 0.5f;
         private int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
-
-        ExplosionEffect Explode;
 
 
         public GameWorld()
@@ -134,7 +130,7 @@ namespace GhostDriver_
             foreach (var gameObject in gameObjects)
             {
                 gameObject.Draw(spriteBatch);
-                DrawCollisionBox(gameObject);
+                //DrawCollisionBox(gameObject);
             }
             if (lives > 0)
             {
