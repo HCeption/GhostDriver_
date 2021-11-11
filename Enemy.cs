@@ -14,7 +14,7 @@ namespace GhostDriver_
         private SoundEffectInstance effect;
         ExplosionEffect explode;
 
-        public Enemy(int xPos)
+        public Enemy() //Enemy must die
         {
             this.xPos = xPos;
             random = new Random();
@@ -36,8 +36,7 @@ namespace GhostDriver_
             sprites[4] = content.Load<Texture2D>("taxi");
             sprites[5] = content.Load<Texture2D>("truck");
             effect = content.Load<SoundEffect>("Explosion_Sound").CreateInstance();
-            //repair = content.Load<SoundEffect>("Repair_Sounds").CreateInstance();
-
+            
 
             Create();
         }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    public abstract class GameObject
+    public abstract class GameObject //Enemy must die
     {
         //work very hard
         protected Vector2 position;
@@ -17,6 +17,8 @@ namespace GhostDriver_
         protected float[] positions = new float[3];
         protected Random random;
         protected SoundEffectInstance repair;
+        protected Texture2D drawSpriteWrench;
+        protected Texture2D[] spritesWrench;
 
 
 

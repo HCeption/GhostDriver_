@@ -10,9 +10,12 @@ namespace GhostDriver_
 {
     class Wrench : GameObject
     {
+        
 
-        public Wrench()
+
+        public Wrench() //Enemy must die
         {
+            random = new Random();
 
             positions[0] = (GameWorld.screenSize.X / 3) - 95;
             positions[1] = (GameWorld.screenSize.X / 2) - 47;
@@ -20,7 +23,13 @@ namespace GhostDriver_
         }
         public override void LoadContent(ContentManager content)
         {
-            drawSprite = content.Load<Texture2D>("wrench");
+            spritesWrench = new Texture2D[3];
+
+            spritesWrench[0] = content.Load<Texture2D>("wrench");
+            spritesWrench[1] = content.Load<Texture2D>("wrench");
+            spritesWrench[2] = content.Load<Texture2D>("wrench");
+
+            //drawSpriteWrench = content.Load<Texture2D>("wrench");
 
             Respawn();
         }
@@ -45,14 +54,16 @@ namespace GhostDriver_
                 Respawn();
             }
 
+
         }
         public void Respawn()
         {
-
+            Random random = new Random();
             int idx = random.Next(0, 3);
-            drawSprite = sprites[idx];
+            drawSprite = spritesWrench[idx];
             position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
             velocity = new Vector2(0, 1);
+
 
         }
     }
