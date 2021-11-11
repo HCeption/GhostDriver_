@@ -134,7 +134,10 @@ namespace GhostDriver_
             }
             if (lives < 1)
             {
-                spriteBatch.DrawString(text, $"          GAME OVER\nYou Achived a score of {score}", new Vector2(20, 200), Color.White,0,new Vector2 (0,0),2f,0,0);
+                string stringggg = "Press \"r\" to retry";
+                float test = text.MeasureString(stringggg).X;
+                spriteBatch.DrawString(text, $"          GAME OVER\nYou Achived a score of {score}", new Vector2(20, 200), Color.Red,0,new Vector2 (0,0),2f,0,0);
+                spriteBatch.DrawString(text, "Press \"r\" to retry", new Vector2(screenSize.X / 2-test,screenSize.Y/2), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
             }
             spriteBatch.End();
 
