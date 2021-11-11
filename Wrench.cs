@@ -10,7 +10,7 @@ namespace GhostDriver_
 {
     class Wrench : GameObject
     {
-        private Texture2D drawSpriteWrench;
+        
 
 
         public Wrench()
@@ -23,7 +23,13 @@ namespace GhostDriver_
         }
         public override void LoadContent(ContentManager content)
         {
-            drawSprite = content.Load<Texture2D>("wrench");
+            spritesWrench = new Texture2D[3];
+
+            spritesWrench[0] = content.Load<Texture2D>("wrench");
+            spritesWrench[1] = content.Load<Texture2D>("wrench");
+            spritesWrench[2] = content.Load<Texture2D>("wrench");
+
+            //drawSpriteWrench = content.Load<Texture2D>("wrench");
 
             Respawn();
         }
@@ -43,7 +49,7 @@ namespace GhostDriver_
         {
             Move(gameTime);
 
-            if (position.Y - drawSpriteWrench.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
+            if (position.Y - drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
             {
                 Respawn();
             }
@@ -54,8 +60,8 @@ namespace GhostDriver_
         {
             Random random = new Random();
             int idx = random.Next(0, 3);
-            drawSpriteWrench = sprites[idx];
-            position = new Vector2(positions[idx], 0 - drawSpriteWrench.Height * (GameWorld.gameScale + .33f));
+            drawSprite = spritesWrench[idx];
+            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
             velocity = new Vector2(0, 1);
 
 
