@@ -13,7 +13,7 @@ namespace GhostDriver_
         
 
 
-        public Wrench()
+        public Wrench() //Enemy must die
         {
             random = new Random();
 
