@@ -45,6 +45,7 @@ namespace GhostDriver_
                 Respawn();
             }
 
+
         }
         public void Respawn()
         {
@@ -53,6 +54,7 @@ namespace GhostDriver_
             drawSprite = sprites[idx];
             position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
             velocity = new Vector2(0, 1);
+
 
         }
     }
