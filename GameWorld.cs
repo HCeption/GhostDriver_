@@ -15,7 +15,7 @@ namespace GhostDriver_
         private Enemy enemy;
         private Wrench wrench;
         private List<GameObject> gameObjects = new List<GameObject>();
-        private static List<GameObject> newObjects = new List<GameObject>(); // Aded in afternoon
+        private static List<GameObject> newObjects = new List<GameObject>(); 
         private static List<GameObject> deleteObjects = new List<GameObject>();
         public static Vector2 screenSize;
         private Texture2D CollisionTexture;
