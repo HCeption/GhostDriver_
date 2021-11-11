@@ -12,7 +12,7 @@ namespace GhostDriver_
     {
         private int xPos;
 
-        public Wrench(int xPos) //Enemy must die
+        public Wrench(int xPos)
         {
             this.xPos = xPos;
             random = new Random();

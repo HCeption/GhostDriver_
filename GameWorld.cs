@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 namespace GhostDriver_
 {
-    public class GameWorld : Game  //Enemy must die
+    public class GameWorld : Game
     {
-        //work
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Texture2D road;
@@ -139,14 +138,11 @@ namespace GhostDriver_
             }
             if (lives > 0)
             {
-                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h", new Vector2(0, 0), Color.White);
             }
             if (lives < 1)
             {
-                string stringggg = "Press \"r\" to retry";
-                float test = text.MeasureString(stringggg).X;
-                spriteBatch.DrawString(text, $"          GAME OVER\nYou Achived a score of {score}", new Vector2(20, 200), Color.Red,0,new Vector2 (0,0),2f,0,0);
-                spriteBatch.DrawString(text, "Press \"r\" to retry", new Vector2(screenSize.X / 2-test,screenSize.Y/2), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+                EndScreen();
             }
             spriteBatch.End();
 
@@ -206,7 +202,7 @@ namespace GhostDriver_
             Random rnd = new Random();
             byte spawnRandom;
             bool spawnWrench = false;
-            int temp=0;
+            int temp = 0;
             while (spawnAmount > 0)
             {
                 byte availableAmount = 0;
@@ -244,6 +240,15 @@ namespace GhostDriver_
                     }
                 }
             }
+        }
+        private void EndScreen()
+        {
+            string stringTemp = $"        GAME OVER\nYou Achived a score of\n                 -{score}-";
+            Vector2 stringSize = text.MeasureString(stringTemp);
+            spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 - (int)(stringSize.Y * 1.5)), Color.Red, 0, new Vector2(0, 0), 2f, 0, 0);
+            stringTemp = "Press \"r\" to retry";
+            stringSize = text.MeasureString(stringTemp);
+            spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 1.5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
         }
     }
 }
