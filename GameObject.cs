@@ -18,7 +18,7 @@ namespace GhostDriver_
         protected Random random;
         protected SoundEffectInstance repair;
         protected Texture2D drawSpriteWrench;
-        protected Texture2D[] spritesWrench;
+        protected Texture2D spriteWrench;
 
 
 
@@ -39,13 +39,7 @@ namespace GhostDriver_
         {
 
         }
-        //public Rectangle CollisionBox
-        //{
-        //    get
-        //    {
-        //        return new Rectangle((int)position.X, (int)position.Y, drawSprite.Width, drawSprite.Height);
-        //    }
-        //}
+     
         public virtual Rectangle GetCollisionBox()
         {
             return new Rectangle((int)position.X, (int)position.Y, (int)(drawSprite.Width * (GameWorld.gameScale + GameWorld.scaleOffset)), (int)(drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset)));

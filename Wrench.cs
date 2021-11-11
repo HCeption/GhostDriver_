@@ -10,11 +10,11 @@ namespace GhostDriver_
 {
     class Wrench : GameObject
     {
-        
+        private int xPos;
 
-
-        public Wrench() //Enemy must die
+        public Wrench(int xPos) //Enemy must die
         {
+            this.xPos = xPos;
             random = new Random();
 
             positions[0] = (GameWorld.screenSize.X / 3) - 95;
@@ -23,11 +23,8 @@ namespace GhostDriver_
         }
         public override void LoadContent(ContentManager content)
         {
-            spritesWrench = new Texture2D[3];
 
-            spritesWrench[0] = content.Load<Texture2D>("wrench");
-            spritesWrench[1] = content.Load<Texture2D>("wrench");
-            spritesWrench[2] = content.Load<Texture2D>("wrench");
+            drawSprite = content.Load<Texture2D>("wrench");
 
             //drawSpriteWrench = content.Load<Texture2D>("wrench");
 
@@ -40,7 +37,7 @@ namespace GhostDriver_
             if (other is Player)
             {
                 GameWorld.lives++;
-                Respawn();
+                GameWorld.Destroy(this);
             }
 
         }
@@ -51,17 +48,14 @@ namespace GhostDriver_
 
             if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
-                Respawn();
+                GameWorld.Destroy(this);
             }
 
 
         }
         public void Respawn()
         {
-            Random random = new Random();
-            int idx = random.Next(0, 3);
-            drawSprite = spritesWrench[idx];
-            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
+            position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
             velocity = new Vector2(0, 1);
 
 

@@ -50,8 +50,8 @@ namespace GhostDriver_
             player = new Player();
             gameObjects.Add(player);
 
-            wrench = new Wrench();
-            newObjects.Add(wrench);
+            //wrench = new Wrench();
+            //newObjects.Add(wrench);
             spawnAmount = 4;
 
 
@@ -191,18 +191,25 @@ namespace GhostDriver_
         public static int spawnAmount;
         private void SpawnLogic()
         {
+            Random rnd = new Random();
+            byte spawnRandom;
+            bool spawnWrench = false;
+            int temp=0;
             while (spawnAmount > 0)
             {
-                byte availableSpawn = 0;
-                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableSpawn++;
-                if (availableSpawn < 2) break;
+                byte availableAmount = 0;
+                Console.WriteLine($"i run {temp} times, spawning {spawnAmount}, in slots: {availableAmount}");
+                temp++;
 
-                Random rnd = new Random();
-                byte spawnPos = (byte)rnd.Next(0, 3); //Create random pos
-                if (safeSpawn[spawnPos] == 0) //if random pos is available
+                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++;
+                if (availableAmount < 2) break;
+
+
+                spawnRandom = (byte)rnd.Next(0, 3); //Create random pos
+                if (safeSpawn[spawnRandom] == 0) //if random pos is available
                 {
-                    newObjects.Add(new Enemy(spawnPos)); //Create enemy at chosen random pos
-                    safeSpawn[spawnPos] = rnd.Next(10000, 50000);
+                    newObjects.Add(new Enemy(spawnRandom)); //Create enemy at chosen random pos
+                    safeSpawn[spawnRandom] = rnd.Next(10000, 50000);
                     spawnAmount--;
                 }
             }
@@ -211,6 +218,19 @@ namespace GhostDriver_
             {
                 if (safeSpawn[i] > 0) safeSpawn[i] -= speed;
                 if (safeSpawn[i] < 0) safeSpawn[i] = 0;
+            }
+            spawnRandom = (byte)rnd.Next(0, 2000);
+            if (spawnRandom == 0) spawnWrench = true; //spawn rare wrench
+            if (spawnWrench)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (safeSpawn[i] < 2000)
+                    {
+                        newObjects.Add(new Wrench(i));
+                        break;
+                    }
+                }
             }
         }
     }
