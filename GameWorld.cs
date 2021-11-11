@@ -52,7 +52,7 @@ namespace GhostDriver_
             enemy = new Enemy();
             gameObjects.Add(enemy);
 
-            //newObjects.Add(wrench);
+
             enemy = new Enemy();
             //wrench = new Wrench();
             gameObjects.Add(enemy);
