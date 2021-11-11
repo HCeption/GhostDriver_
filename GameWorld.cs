@@ -184,15 +184,17 @@ namespace GhostDriver_
         private void SpawnLogic()
         {
             Random rnd = new Random();
-            byte availableSpawn = 0;
+            byte availableAmount = 0;
             byte spawnRandom;
             bool spawnWrench = false;
+            int temp=0;
             while (spawnAmount > 0)
             {
-                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableSpawn++;
-                spawnRandom = (byte)rnd.Next(0, 2);
-                if (spawnRandom == 0) spawnWrench = true; //spawn rare wrench
-                if (availableSpawn < 2) break;
+                Console.WriteLine($"i run {temp} times, and amount: {spawnAmount}, available: {availableAmount}");
+                temp++;
+
+                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++;
+                if (availableAmount < 2) break;
 
 
                 spawnRandom = (byte)rnd.Next(0, 3); //Create random pos
@@ -209,6 +211,8 @@ namespace GhostDriver_
                 if (safeSpawn[i] > 0) safeSpawn[i] -= speed;
                 if (safeSpawn[i] < 0) safeSpawn[i] = 0;
             }
+            spawnRandom = (byte)rnd.Next(0, 2);
+            if (spawnRandom == 0) spawnWrench = true; //spawn rare wrench
             if (spawnWrench)
             {
                 for (int i = 0; i < 3; i++)
