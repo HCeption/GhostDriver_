@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace GhostDriver_
 {
-    public class GameWorld : Game
+    public class GameWorld : Game  //Enemy must die
     {
         //work
         private GraphicsDeviceManager graphics;
@@ -51,16 +51,13 @@ namespace GhostDriver_
             //wrench = new Wrench();
             enemy = new Enemy();
             gameObjects.Add(enemy);
-
             newObjects.Add(wrench);
+            enemy = new Enemy();           
+            gameObjects.Add(enemy);            
             enemy = new Enemy();
             //wrench = new Wrench();
             gameObjects.Add(enemy);
-            //gameObjects.Add(wrench);
-            enemy = new Enemy();
-            //wrench = new Wrench();
-            gameObjects.Add(enemy);
-            //gameObjects.Add(wrench);
+            
 
             base.Initialize();
         }

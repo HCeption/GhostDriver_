@@ -14,7 +14,7 @@ namespace GhostDriver_
         private SoundEffectInstance effect;
         ExplosionEffect explode;
 
-        public Enemy()
+        public Enemy() //Enemy must die
         {
             random = new Random();
 
