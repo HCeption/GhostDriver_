@@ -108,7 +108,11 @@ namespace GhostDriver_
             }
             deleteObjects.Clear();
 
-
+            if (lives < 1)
+            {
+                speed = 0;
+                roadSpeed = 0;
+            }
 
             base.Update(gameTime);
         }
