@@ -48,15 +48,8 @@ namespace GhostDriver_
             player = new Player();
             gameObjects.Add(player);
 
-            /*wrench = new Wrench();
-            enemy = new Enemy();
-            gameObjects.Add(enemy);
-            newObjects.Add(wrench);
-            enemy = new Enemy();           
-            gameObjects.Add(enemy);            
-            enemy = new Enemy();
             wrench = new Wrench();
-            gameObjects.Add(enemy);*/
+            newObjects.Add(wrench);
             spawnAmount = 8;
             
 
