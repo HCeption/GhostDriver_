@@ -184,13 +184,13 @@ namespace GhostDriver_
         private void SpawnLogic()
         {
             Random rnd = new Random();
-            byte availableAmount = 0;
             byte spawnRandom;
             bool spawnWrench = false;
             int temp=0;
             while (spawnAmount > 0)
             {
-                Console.WriteLine($"i run {temp} times, and amount: {spawnAmount}, available: {availableAmount}");
+                byte availableAmount = 0;
+                Console.WriteLine($"i run {temp} times, spawning {spawnAmount}, in slots: {availableAmount}");
                 temp++;
 
                 for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++;
