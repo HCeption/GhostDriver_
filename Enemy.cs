@@ -35,7 +35,6 @@ namespace GhostDriver_
             sprites[4] = content.Load<Texture2D>("taxi");
             sprites[5] = content.Load<Texture2D>("truck");
             effect = content.Load<SoundEffect>("Explosion_Sound").CreateInstance();
-            
 
             Respawn();
         }
@@ -61,6 +60,7 @@ namespace GhostDriver_
                 Respawn();
                 GameWorld.score++;
             }
+
         }
         public void Respawn()
         {
