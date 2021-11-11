@@ -10,12 +10,13 @@ namespace GhostDriver_
 {
     class Enemy : GameObject
     {
-        //work until you die        
+        private int xPos;     
         private SoundEffectInstance effect;
         ExplosionEffect explode;
 
-        public Enemy() //Enemy must die
+        public Enemy(int xPos) //Enemy must die
         {
+            this.xPos = xPos;
             random = new Random();
 
             positions[0] = (GameWorld.screenSize.X / 3) - 95;
@@ -36,7 +37,7 @@ namespace GhostDriver_
             sprites[5] = content.Load<Texture2D>("truck");
             effect = content.Load<SoundEffect>("Explosion_Sound").CreateInstance();
 
-            Respawn();
+            Create();
         }
 
         public override void OnCollision(GameObject other)
@@ -47,7 +48,7 @@ namespace GhostDriver_
                 GameWorld.AddObject(explode);
                 effect.Play();
                 GameWorld.lives--;
-                Respawn();
+                Remove();
             }
         }
 
@@ -57,21 +58,25 @@ namespace GhostDriver_
 
             if (position.Y - drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
             {
-                Respawn();
                 GameWorld.score++;
+                Remove();
             }
 
         }
-        public void Respawn()
+        public void Create()
         {
-            int index = random.Next(0, 5);
+            int index = random.Next(0, sprites.Length);
             drawSprite = sprites[index];
-            int idx = random.Next(0, 3);
-            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
+            position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
             velocity = new Vector2(0, 1);
             GameWorld.speed = 400 + (GameWorld.score) * 3;
             if (GameWorld.speed > 600) GameWorld.speed = 600;
 
+        }
+        private void Remove()
+        {
+            GameWorld.Destroy(this);
+            GameWorld.spawnAmount++;
         }
     }
 }

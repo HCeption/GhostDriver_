@@ -48,14 +48,14 @@ namespace GhostDriver_
             player = new Player();
             gameObjects.Add(player);
 
-            //wrench = new Wrench();
+            /*wrench = new Wrench();
             enemy = new Enemy();
             gameObjects.Add(enemy);
             newObjects.Add(wrench);
             enemy = new Enemy();           
             gameObjects.Add(enemy);            
             enemy = new Enemy();
-            //wrench = new Wrench();
+            wrench = new Wrench();
             gameObjects.Add(enemy);
             
 
@@ -86,6 +86,9 @@ namespace GhostDriver_
 
             // TODO: Add your update logic here
 
+            SpawnLogic();//-------------------------------------------------Spawn new cars via SPAWN LOGIC
+
+
             foreach (var gameObject in gameObjects)
             {
                 gameObject.Update(gameTime);
@@ -109,6 +112,9 @@ namespace GhostDriver_
                 gameObjects.Remove(go);
             }
             deleteObjects.Clear();
+
+
+
             base.Update(gameTime);
         }
 
@@ -120,9 +126,9 @@ namespace GhostDriver_
             foreach (var gameObject in gameObjects)
             {
                 gameObject.Draw(spriteBatch);
-                //DrawCollisionBox(gameObject);
+                DrawCollisionBox(gameObject);
             }
-            spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h", new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
             spriteBatch.End();
 
 
@@ -172,6 +178,33 @@ namespace GhostDriver_
         public static void AddObject(GameObject go)
         {
             newObjects.Add(go);
+        }
+
+        private int[] safeSpawn = new int[3];
+        public static int spawnAmount;
+        private void SpawnLogic()
+        {
+            while (spawnAmount > 0)
+            {
+                byte availableSpawn = 0;
+                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableSpawn++;
+                if (availableSpawn < 2) break;
+
+                Random rnd = new Random();
+                byte spawnPos = (byte)rnd.Next(0, 3); //Create random pos
+                if (safeSpawn[spawnPos] == 0) //if random pos is available
+                {
+                    newObjects.Add(new Enemy(spawnPos)); //Create enemy at chosen random pos
+                    safeSpawn[spawnPos] = 30000;
+                    spawnAmount--;
+                }
+            }
+
+            for (int i = 0; i < 3; i++) // 'Cooldown'
+            {
+                if (safeSpawn[i] > 0) safeSpawn[i] -= speed;
+                if (safeSpawn[i] < 0) safeSpawn[i] = 0;
+            }
         }
     }
 }
