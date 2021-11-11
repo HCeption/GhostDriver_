@@ -17,6 +17,8 @@ namespace GhostDriver_
         protected float[] positions = new float[3];
         protected Random random;
         protected SoundEffectInstance repair;
+        protected Texture2D drawSpriteWrench;
+        protected Texture2D[] spritesWrench;
 
 
 
