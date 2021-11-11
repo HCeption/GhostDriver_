@@ -43,8 +43,6 @@ namespace GhostDriver_
         {
             // TODO: Add your initialization logic here
             GameScale();
-
-
             
             player = new Player();
             gameObjects.Add(player);
