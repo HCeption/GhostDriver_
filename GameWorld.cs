@@ -211,7 +211,7 @@ namespace GhostDriver_
                 if (safeSpawn[i] > 0) safeSpawn[i] -= speed;
                 if (safeSpawn[i] < 0) safeSpawn[i] = 0;
             }
-            spawnRandom = (byte)rnd.Next(0, 2);
+            spawnRandom = (byte)rnd.Next(0, 2000);
             if (spawnRandom == 0) spawnWrench = true; //spawn rare wrench
             if (spawnWrench)
             {
@@ -220,6 +220,7 @@ namespace GhostDriver_
                     if (safeSpawn[i] < 2000)
                     {
                         newObjects.Add(new Wrench(i));
+                        break;
                     }
                 }
             }
