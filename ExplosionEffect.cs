@@ -12,6 +12,7 @@ namespace GhostDriver_
     {
         private static Texture2D[] explosion = new Texture2D[8];
         private float explosionFPS = 0;
+
         public ExplosionEffect(Vector2 position)
         {
             this.position = new Vector2(position.X - 40, position.Y);

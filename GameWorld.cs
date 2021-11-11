@@ -25,6 +25,7 @@ namespace GhostDriver_
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
 
+
         private int roadPos;
         public static float gameScale = 0.5f;
         private int roadSpeed = (int)(15 * gameScale);
@@ -127,7 +128,14 @@ namespace GhostDriver_
                 gameObject.Draw(spriteBatch);
                 DrawCollisionBox(gameObject);
             }
-            spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
+            if (lives > 0)
+            {
+                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
+            }
+            if (lives < 1)
+            {
+                spriteBatch.DrawString(text, $"          GAME OVER\nYou Achived a score of {score}", new Vector2(20, 200), Color.White,0,new Vector2 (0,0),2f,0,0);
+            }
             spriteBatch.End();
 
 
