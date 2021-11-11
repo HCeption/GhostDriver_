@@ -24,6 +24,7 @@ namespace GhostDriver_
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
+        KeyboardState keyState;
 
 
         private int roadPos;
@@ -109,10 +110,18 @@ namespace GhostDriver_
             }
             deleteObjects.Clear();
 
-            if (lives < 1)
+            if  (lives < 1)
             {
+                
                 speed = 0;
                 roadSpeed = 0;
+                if (keyState.IsKeyDown(Keys.R) == true)
+                {
+                    lives = 3;
+                    speed = (int)(600 * GameWorld.gameScale);
+                    roadSpeed = (int)(15 * gameScale);
+
+                }
             }
 
             base.Update(gameTime);
