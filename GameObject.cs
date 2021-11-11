@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    public abstract class GameObject //Enemy must die
+    public abstract class GameObject 
     {
         //work very hard
         protected Vector2 position;
