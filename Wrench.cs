@@ -10,9 +10,12 @@ namespace GhostDriver_
 {
     class Wrench : GameObject
     {
+        private Texture2D drawSpriteWrench;
+
 
         public Wrench()
         {
+            random = new Random();
 
             positions[0] = (GameWorld.screenSize.X / 3) - 95;
             positions[1] = (GameWorld.screenSize.X / 2) - 47;
@@ -40,7 +43,7 @@ namespace GhostDriver_
         {
             Move(gameTime);
 
-            if (position.Y - drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
+            if (position.Y - drawSpriteWrench.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
             {
                 Respawn();
             }
@@ -48,10 +51,10 @@ namespace GhostDriver_
         }
         public void Respawn()
         {
-
+            Random random = new Random();
             int idx = random.Next(0, 3);
-            drawSprite = sprites[idx];
-            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
+            drawSpriteWrench = sprites[idx];
+            position = new Vector2(positions[idx], 0 - drawSpriteWrench.Height * (GameWorld.gameScale + .33f));
             velocity = new Vector2(0, 1);
 
         }
