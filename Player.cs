@@ -60,7 +60,6 @@ namespace GhostDriver_
             HandleInput();
             Move(gameTime);
             ScreenLimits();
-
         }
 
 
