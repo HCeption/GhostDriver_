@@ -33,7 +33,7 @@ namespace GhostDriver_
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(drawSprite, position, null, Color.White, 0, Vector2.Zero, GameWorld.gameScale + .33f, SpriteEffects.None, 1);
+            spriteBatch.Draw(drawSprite, position, null, Color.White, 0, Vector2.Zero, GameWorld.gameScale + GameWorld.scaleOffset, SpriteEffects.None, 1);
         }
         protected void Animate()
         {
@@ -48,7 +48,7 @@ namespace GhostDriver_
         //}
         public virtual Rectangle GetCollisionBox()
         {
-            return new Rectangle((int)position.X, (int)position.Y, (int)(drawSprite.Width * (GameWorld.gameScale + .33f)), (int)(drawSprite.Height * (GameWorld.gameScale + .33f)));
+            return new Rectangle((int)position.X, (int)position.Y, (int)(drawSprite.Width * (GameWorld.gameScale + GameWorld.scaleOffset)), (int)(drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset)));
         }
 
         public abstract void OnCollision(GameObject other);

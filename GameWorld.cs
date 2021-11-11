@@ -28,6 +28,7 @@ namespace GhostDriver_
         private int roadPos;
         public static float gameScale = 0.5f;
         private int roadSpeed = (int)(15 * gameScale);
+        public static float scaleOffset = .30f;
 
         ExplosionEffect Explode;
 
@@ -44,14 +45,14 @@ namespace GhostDriver_
             // TODO: Add your initialization logic here
             GameScale();
 
-            
+
             player = new Player();
             gameObjects.Add(player);
 
             wrench = new Wrench();
             newObjects.Add(wrench);
             spawnAmount = 8;
-            
+
 
             base.Initialize();
         }
@@ -189,7 +190,7 @@ namespace GhostDriver_
                 if (safeSpawn[spawnPos] == 0) //if random pos is available
                 {
                     newObjects.Add(new Enemy(spawnPos)); //Create enemy at chosen random pos
-                    safeSpawn[spawnPos] = rnd.Next(10000,50000);
+                    safeSpawn[spawnPos] = rnd.Next(10000, 50000);
                     spawnAmount--;
                 }
             }

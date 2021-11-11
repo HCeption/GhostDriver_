@@ -24,17 +24,17 @@ namespace GhostDriver_
             {
                 position.Y = 0;
             }
-            if (position.Y + drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
+            if (position.Y + drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
-                position.Y = GameWorld.screenSize.Y - drawSprite.Height * (GameWorld.gameScale + .33f);
+                position.Y = GameWorld.screenSize.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset);
             }
             if (position.X < 0)
             {
                 position.X = 0;
             }
-            if (position.X + drawSprite.Width * (GameWorld.gameScale + .33f) > GameWorld.screenSize.X)
+            if (position.X + drawSprite.Width * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.X)
             {
-                position.X = GameWorld.screenSize.X - drawSprite.Width * (GameWorld.gameScale + .33f);
+                position.X = GameWorld.screenSize.X - drawSprite.Width * (GameWorld.gameScale + GameWorld.scaleOffset);
             }
         }
 
