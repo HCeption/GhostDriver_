@@ -14,6 +14,7 @@ namespace GhostDriver_
         private Texture2D road;
         private Player player;
         private Enemy enemy;
+        private Wrench wrench;
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> newObjects = new List<GameObject>(); // Aded in afternoon
         private static List<GameObject> deleteObjects = new List<GameObject>();
@@ -43,16 +44,23 @@ namespace GhostDriver_
             // TODO: Add your initialization logic here
             GameScale();
 
+            
             player = new Player();
             gameObjects.Add(player);
 
-            /*enemy = new Enemy(0);
+            wrench = new Wrench();
+            enemy = new Enemy();
             gameObjects.Add(enemy);
-            enemy = new Enemy(1);
+
+            //newObjects.Add(wrench);
+            enemy = new Enemy();
+            //wrench = new Wrench();
             gameObjects.Add(enemy);
-            enemy = new Enemy(2);
-            gameObjects.Add(enemy);*/
-            spawnAmount = 8;
+            //gameObjects.Add(wrench);
+            enemy = new Enemy();
+            wrench = new Wrench();
+            gameObjects.Add(enemy);
+            //gameObjects.Add(wrench);
 
             base.Initialize();
         }
