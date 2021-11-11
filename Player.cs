@@ -9,10 +9,8 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GhostDriver_
 {
-    class Player : GameObject  //Enemy must die
+    class Player : GameObject
     {
-        //work hard
-
         public Player()
         {
             position = new Vector2(150, 700);
