@@ -48,7 +48,7 @@ namespace GhostDriver_
             player = new Player();
             gameObjects.Add(player);
 
-            /*wrench = new Wrench();
+            wrench = new Wrench();
             enemy = new Enemy();
             gameObjects.Add(enemy);
             newObjects.Add(wrench);
