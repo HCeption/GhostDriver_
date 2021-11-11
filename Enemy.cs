@@ -56,7 +56,7 @@ namespace GhostDriver_
         {
             Move(gameTime);
 
-            if (position.Y - drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
+            if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
                 GameWorld.score++;
                 Remove();
@@ -67,7 +67,7 @@ namespace GhostDriver_
         {
             int index = random.Next(0, sprites.Length);
             drawSprite = sprites[index];
-            position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
+            position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
             velocity = new Vector2(0, 1);
             GameWorld.speed = 400 + (GameWorld.score) * 3;
             if (GameWorld.speed > 600) GameWorld.speed = 600;

@@ -49,7 +49,7 @@ namespace GhostDriver_
         {
             Move(gameTime);
 
-            if (position.Y - drawSprite.Height * (GameWorld.gameScale + .33f) > GameWorld.screenSize.Y)
+            if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
                 Respawn();
             }
@@ -61,7 +61,7 @@ namespace GhostDriver_
             Random random = new Random();
             int idx = random.Next(0, 3);
             drawSprite = spritesWrench[idx];
-            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + .33f));
+            position = new Vector2(positions[idx], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
             velocity = new Vector2(0, 1);
 
 
