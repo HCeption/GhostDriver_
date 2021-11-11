@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Input;
 namespace GhostDriver_
 {
     class Player : GameObject
-
     {
         public Player()
         {
