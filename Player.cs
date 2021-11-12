@@ -48,7 +48,7 @@ namespace GhostDriver_
             if (keyState.IsKeyDown(Keys.W))
             {
                 velocity += new Vector2(0, -1);
-                vroom.Play();
+               // vroom.Play();
             }
             if (keyState.IsKeyDown(Keys.S)) velocity += new Vector2(0, 1);
             if (keyState.IsKeyDown(Keys.A)) velocity += new Vector2(-1, 0);
