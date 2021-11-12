@@ -130,7 +130,7 @@ namespace GhostDriver_
                 }
                 speed = 0;
                 roadSpeed = 0;
-                
+                MediaPlayer.Pause();
                 
 
                 if (keyState.IsKeyDown(Keys.R))
@@ -139,6 +139,7 @@ namespace GhostDriver_
                     speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
                     score = 0;
+                    MediaPlayer.Resume();
 
                 }
 
