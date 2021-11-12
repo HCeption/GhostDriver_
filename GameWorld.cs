@@ -4,30 +4,35 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
     public class GameWorld : Game
     {
-        private GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;//Premade
         private SpriteBatch spriteBatch;
-        private Texture2D road;
-        private Player player;
-        private List<GameObject> gameObjects = new List<GameObject>();
+
+        private Texture2D road; //Textures
+        private Texture2D CollisionTexture;
+
+        private Player player; //We only need ONE player
+        private SpriteFont text; //A single spritefront for the text (viewing score)
+
+        private List<GameObject> gameObjects = new List<GameObject>(); //The lists used to control our GameObjects (which is all enemies, effects, wrenches, and the player)
         private static List<GameObject> newObjects = new List<GameObject>();
         private static List<GameObject> deleteObjects = new List<GameObject>();
-        public static Vector2 screenSize;
-        private Texture2D CollisionTexture;
-        private SpriteFont text;
+
+        public static Vector2 screenSize; //Essential variables. (screensize is used to adjust various items)
         public static int lives = 3;
         public static int score;
-        public static int speed = (int)(600 * GameWorld.gameScale);
+        public static int speed;
         private int highScore;
+
         private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
         public static int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
+
         private int[] safeSpawn = new int[3]; //Spawning logic.
         public static int spawnAmount;
         public static int addSpawnAmount;
