@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GhostDriver_
 {
-    class Player : GameObject  //work hard
+    class Player : GameObject  
     {
         private SoundEffectInstance vroom;
         public Player()
