@@ -78,7 +78,7 @@ namespace GhostDriver_
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (score > 100)
+            if (score > 10)
             {
                 spawnAmount = 3 + score / 50;
             }
@@ -148,7 +148,7 @@ namespace GhostDriver_
             }
             if (lives > 0)
             {
-                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h", new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
             }
             if (lives < 1)
             {
