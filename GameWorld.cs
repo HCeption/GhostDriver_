@@ -26,7 +26,7 @@ namespace GhostDriver_
 
         private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
-        private int roadSpeed = (int)(15 * gameScale);
+        public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
 
         private int[] safeSpawn = new int[3]; //Spawning logic.
@@ -108,19 +108,22 @@ namespace GhostDriver_
             }
             deleteObjects.Clear();
 
-            if (lives < 1)
+            if  (lives < 1)
             {
 
                 speed = 0;
                 roadSpeed = 0;
-                if (keyState.IsKeyDown(Keys.R) == true)
+                if (keyState.IsKeyDown(Keys.R))
                 {
                     lives = 3;
-                    speed = (int)(600 * GameWorld.gameScale);
+                    speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
+                    score = 0;
 
                 }
+
             }
+
 
             base.Update(gameTime);
         }
