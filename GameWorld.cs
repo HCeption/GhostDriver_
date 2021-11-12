@@ -21,6 +21,7 @@ namespace GhostDriver_
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
+        private int highScore;
 
 
         private int roadPos; //Game score, scale, and speeds
@@ -107,11 +108,16 @@ namespace GhostDriver_
             }
             deleteObjects.Clear();
 
+            KeyboardState keyState = Keyboard.GetState();
             if  (lives < 1)
             {
-
+                if (score > highScore)
+                {
+                    highScore = score;
+                }
                 speed = 0;
                 roadSpeed = 0;
+
                 if (keyState.IsKeyDown(Keys.R))
                 {
                     lives = 3;
@@ -245,7 +251,7 @@ namespace GhostDriver_
             spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 - (int)(stringSize.Y * 1.5)), Color.Red, 0, new Vector2(0, 0), 2f, 0, 0);
             stringTemp = "Press \"r\" to retry";
             stringSize = text.MeasureString(stringTemp);
-            spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 1.5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+            spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 2.5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
         }
     }
 }
