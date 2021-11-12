@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    public class GameWorld : Game //work hard
+    public class GameWorld : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -24,17 +24,15 @@ namespace GhostDriver_
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
         private int highScore;
-
-
         private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
         public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
-
-
         private int[] safeSpawn = new int[3]; //Spawning logic.
         public static int spawnAmount;
         public static int addSpawnAmount;
+
+        private SoundEffectInstance vroom;
 
 
         public GameWorld()
@@ -44,27 +42,25 @@ namespace GhostDriver_
             IsMouseVisible = true;
         }
 
+        //initializes the player and sets the starting enemy spawnamount
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             GameScale();
 
 
             player = new Player();
             gameObjects.Add(player);
 
-            //wrench = new Wrench();
-            //newObjects.Add(wrench);
             spawnAmount = 2;
 
 
             base.Initialize();
         }
 
+        //loads textures, backfound music and text font
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            // TODO: use this.Content to load your game content here
             player.LoadContent(Content);
             road = Content.Load<Texture2D>("Road_Texture");
             CollisionTexture = Content.Load<Texture2D>("CollisionTexture");
@@ -72,6 +68,8 @@ namespace GhostDriver_
             MediaPlayer.IsRepeating = true;
             Song music = Content.Load<Song>("Background");
             MediaPlayer.Play(music);
+
+            //loads content in LoadContent for each 
             foreach (GameObject go in gameObjects)
             {
                 if (go is Enemy) go.LoadContent(Content);
@@ -127,6 +125,8 @@ namespace GhostDriver_
                 }
                 speed = 0;
                 roadSpeed = 0;
+                MediaPlayer.Pause();
+                
 
                 if (keyState.IsKeyDown(Keys.R))
                 {
@@ -134,6 +134,7 @@ namespace GhostDriver_
                     speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
                     score = 0;
+                    MediaPlayer.Resume();
 
                 }
 
