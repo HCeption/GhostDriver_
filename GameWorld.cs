@@ -21,7 +21,6 @@ namespace GhostDriver_
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
-        KeyboardState keyState;
 
 
         private int roadPos; //Game score, scale, and speeds
