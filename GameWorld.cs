@@ -19,7 +19,7 @@ namespace GhostDriver_
         private static List<GameObject> deleteObjects = new List<GameObject>();
         public static Vector2 screenSize;
         private Texture2D CollisionTexture;
-        private SpriteFont text;
+        private 1SpriteFont text;
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
