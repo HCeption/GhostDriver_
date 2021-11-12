@@ -148,17 +148,20 @@ namespace GhostDriver_
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+
+
             RollingRoadDraw();
-            foreach (var gameObject in gameObjects)
+
+            foreach (var gameObject in gameObjects) //Master draw loop
             {
                 gameObject.Draw(spriteBatch);
                 //DrawCollisionBox(gameObject);
             }
-            if (lives > 0)
+            if (lives > 0) //If alive, draw screen info
             {
-                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\n{spawnAmount}", new Vector2(0, 0), Color.White);
+                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h", new Vector2(0, 0), Color.White);
             }
-            if (lives < 1)
+            if (lives < 1) //If dead, call EndScreen draw method.
             {
                 EndScreen();
             }
@@ -167,6 +170,9 @@ namespace GhostDriver_
 
             base.Draw(gameTime);
         }
+
+
+
         /// <summary>
         /// Moves the road to give the illusion of driving.
         /// </summary>
@@ -175,18 +181,31 @@ namespace GhostDriver_
             roadPos += roadSpeed;
             if (roadPos > road.Height * gameScale) roadPos = 0;
         }
+
         /// <summary>
         /// Draw the moving road
         /// </summary>
+        /// 
         void RollingRoadDraw()
         {
             spriteBatch.Draw(road, new Vector2(0, roadPos), null, Color.White, 0, Vector2.Zero, gameScale, SpriteEffects.None, 0);
             spriteBatch.Draw(road, new Vector2(0, roadPos - road.Height * gameScale), null, Color.White, 0, Vector2.Zero, gameScale, SpriteEffects.None, 0);
         }
+
+        /// <summary>
+        /// Used to REMOVE subclasses in midgame without breaking everything.
+        /// Method called anywhere, adds object to list, GameObject removed via the list inside GameWorld.Update method.
+        /// </summary>
+        /// <param name="go"></param>
         public static void Destroy(GameObject go)
         {
             deleteObjects.Add(go);
         }
+
+        /// <summary>
+        /// Sets GameScale to correct amount
+        /// Adjusts window size, associating variables, and road image scale.
+        /// </summary>
         void GameScale()
         {
             graphics.PreferredBackBufferWidth = (int)(785 * gameScale); //1920
@@ -195,6 +214,11 @@ namespace GhostDriver_
             screenSize.X = graphics.PreferredBackBufferWidth;
             screenSize.Y = graphics.PreferredBackBufferHeight;
         }
+
+        /// <summary>
+        /// Visualize collisionboxes. Debug only.
+        /// </summary>
+        /// <param name="gameObject"></param>
         private void DrawCollisionBox(GameObject gameObject)
         {
             Rectangle collisionBox = gameObject.GetCollisionBox();
@@ -208,6 +232,12 @@ namespace GhostDriver_
             spriteBatch.Draw(CollisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(CollisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
+
+        /// <summary>
+        /// Used to ADD subclasses in midgame without breaking everything.
+        /// Method called anywhere, adds object to list, GameObject added via the list inside GameWorld.Update method.
+        /// </summary>
+        /// <param name="go"></param>
         public static void AddObject(GameObject go)
         {
             newObjects.Add(go);
