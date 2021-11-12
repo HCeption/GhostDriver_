@@ -20,36 +20,36 @@ namespace GhostDriver_
             this.xPos = xPos;
             random = new Random();
 
-            positions[0] = (GameWorld.screenSize.X / 3) - 95; //Make posiotions for enemies
+            positions[0] = (GameWorld.screenSize.X / 3) - 95; //Make posiotions for enemies on the screen
             positions[1] = (GameWorld.screenSize.X / 2) - 47;
             positions[2] = (GameWorld.screenSize.X) - 126;
 
 
         }
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)  //Override LoadeContent method
         {
             sprites = new Texture2D[6];
 
-            sprites[0] = content.Load<Texture2D>("Audi");
+            sprites[0] = content.Load<Texture2D>("Audi");         //Dowload different cars sprites for enemy class
             sprites[1] = content.Load<Texture2D>("Car");
             sprites[2] = content.Load<Texture2D>("Mini_truck");
             sprites[3] = content.Load<Texture2D>("Mini_van");
             sprites[4] = content.Load<Texture2D>("taxi");
             sprites[5] = content.Load<Texture2D>("truck");
-            effect = content.Load<SoundEffect>("Explosion_Sound").CreateInstance();
+            effect = content.Load<SoundEffect>("Explosion_Sound").CreateInstance(); //Dowload explosion sound
 
-            Create();
+            Create();                                              // Use Create method
         }
 
-        public override void OnCollision(GameObject other)
+        public override void OnCollision(GameObject other)         //Override OnCollision method
         {
-            if (other is Player)
+            if (other is Player)                                  //Make logic in this method
             {
-                explode = new ExplosionEffect(position);
-                GameWorld.AddObject(explode);
-                effect.Play();
-                GameWorld.lives--;
-                Remove();
+                explode = new ExplosionEffect(position);          // Set explosion effect
+                GameWorld.AddObject(explode);                     //
+                effect.Play();                                    //
+                GameWorld.lives--;                                //
+                Remove();                                         //
             }
         }
 
