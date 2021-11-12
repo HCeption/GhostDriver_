@@ -32,7 +32,9 @@ namespace GhostDriver_
         public static int spawnAmount;
         public static int addSpawnAmount;
 
-        //GameWorlds contructor
+        private SoundEffectInstance vroom;
+
+
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -115,7 +117,7 @@ namespace GhostDriver_
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.P)) lives++;
-                if  (lives < 1)
+            if  (lives < 1)
             {
                 if (score > highScore)
                 {
