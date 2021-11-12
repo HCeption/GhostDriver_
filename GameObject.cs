@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    public abstract class GameObject
+    public abstract class GameObject //work hard
     {
         protected Vector2 position;
         protected Vector2 velocity;
