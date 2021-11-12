@@ -32,7 +32,7 @@ namespace GhostDriver_
         }
 
         /// <summary>
-        /// decides what happens when explosionEffect collides woth something
+        /// decides what happens when explosionEffect collides woth something, which is nothing
         /// </summary>
         /// <param name="other"></param>
         public override void OnCollision(GameObject other) { }
@@ -43,7 +43,7 @@ namespace GhostDriver_
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            explosionFPS += .25f;
+            explosionFPS += .25f; // 4 frames pr explosion image
             if (explosionFPS > 7) GameWorld.Destroy(this);
             drawSprite = explosion[(int)explosionFPS];
 
