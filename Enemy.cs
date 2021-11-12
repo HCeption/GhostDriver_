@@ -30,7 +30,7 @@ namespace GhostDriver_
         /// Override LoadeContent method
         /// </summary>
         /// <param name="content"></param>
-        public override void LoadContent(ContentManager content)  
+        public override void LoadContent(ContentManager content)
         {
             sprites = new Texture2D[6];
 
@@ -48,13 +48,13 @@ namespace GhostDriver_
         /// Override OnCollision method
         /// </summary>
         /// <param name="other"></param>
-        public override void OnCollision(GameObject other)         
+        public override void OnCollision(GameObject other)
         {
             if (other is Player)                                  //Make logic in this method
             {
                 explode = new ExplosionEffect(position);          // Call explosion constructor
                 GameWorld.AddObject(explode);                     // Add explosion effect
-                if(GameWorld.sound)effect.Play();                 // Play effect if sound is on
+                if (GameWorld.sound) effect.Play();                 // Play effect if sound is on
                 GameWorld.lives--;                                // Lost live
                 Remove();                                         // Remove all
             }
@@ -63,7 +63,7 @@ namespace GhostDriver_
         /// Override Update method
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Update(GameTime gameTime)           
+        public override void Update(GameTime gameTime)
         {
             Move(gameTime);                                     // Call move method
             // Logic for enemy position on the screen
@@ -79,7 +79,7 @@ namespace GhostDriver_
         /// <summary>
         /// Make Create method
         /// </summary>
-        public void Create()                                    
+        public void Create()
         {
             int index = random.Next(0, sprites.Length);        // Make random enemy posiosion on the screen
             drawSprite = sprites[index];
@@ -92,7 +92,7 @@ namespace GhostDriver_
         /// <summary>
         /// Create Remove method
         /// </summary>
-        private void Remove()                                  
+        private void Remove()
         {
             GameWorld.Destroy(this);
             GameWorld.spawnAmount++;
