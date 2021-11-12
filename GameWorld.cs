@@ -32,17 +32,12 @@ namespace GhostDriver_
         public static int spawnAmount;
         public static int addSpawnAmount;
 
-        private SoundEffectInstance vroom;
-
-
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
-        //initializes the player and sets the starting enemy spawnamount
         protected override void Initialize()
         {
             GameScale();
@@ -51,13 +46,11 @@ namespace GhostDriver_
             player = new Player();
             gameObjects.Add(player);
 
-            spawnAmount = 2;
+            spawnAmount = 2; // Initial game difficulty by spawning only 2 cars (enemies).
 
 
             base.Initialize();
         }
-
-        //loads textures, backfound music and text font
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -69,15 +62,13 @@ namespace GhostDriver_
             Song music = Content.Load<Song>("Background");
             MediaPlayer.Play(music);
 
-            //loads content in LoadContent for each 
-            foreach (GameObject go in gameObjects)
+            foreach (GameObject go in gameObjects) //Preload all content. Enemies are added later, but its a good failsafe too.
             {
                 if (go is Enemy) go.LoadContent(Content);
                 if (go is ExplosionEffect) go.LoadContent(Content);
             }
 
         }
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -88,22 +79,22 @@ namespace GhostDriver_
                 spawnAmount++;
             }
 
-            SpawnLogic();//-------------------------------------------------Spawn new cars via SPAWN LOGIC
+            SpawnLogic();//Spawn new cars via SPAWN LOGIC
+            RollingRoadUpdate();//Update the rolling road (background road)
 
-
-            foreach (var gameObject in gameObjects)
+            foreach (var gameObject in gameObjects) //Main update loop
             {
-                gameObject.Update(gameTime);
-                foreach (var other in gameObjects)
+                gameObject.Update(gameTime); //Call each subclasses' update method, wherein they call for Move and all sorts methods.
+                foreach (var other in gameObjects) //Collision checking loop
                 {
                     gameObject.CheckCollision(other);
                 }
 
             }
-            RollingRoadUpdate();
+            
 
 
-            foreach (var go in newObjects)
+            foreach (var go in newObjects) //Add the new objects from AddObject method
             {
                 go.LoadContent(Content);
                 gameObjects.Add(go);
@@ -116,10 +107,11 @@ namespace GhostDriver_
             deleteObjects.Clear();
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.P)) lives++;
-            if (lives < 1)
+            if (keyState.IsKeyDown(Keys.P)) lives++; //Debug gem kept ingame for those that like that
+
+            if (lives < 1) //If dead, pause all logic in the game.
             {
-                if (score > highScore)
+                if (score > highScore) //Set new highscore
                 {
                     highScore = score;
                 }
@@ -128,22 +120,19 @@ namespace GhostDriver_
                 MediaPlayer.Pause();
 
 
-                if (keyState.IsKeyDown(Keys.R))
+                if (keyState.IsKeyDown(Keys.R)) //Restart game
                 {
                     lives = 3;
                     speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
                     score = 0;
                     MediaPlayer.Resume();
-
                 }
-
             }
 
 
             base.Update(gameTime);
         }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
