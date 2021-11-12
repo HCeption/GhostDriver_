@@ -8,21 +8,30 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    class Wrench : GameObject //work hard
+    class Wrench : GameObject
     {
         private int xPos;
         private SoundEffectInstance wrenchSound;
 
-
+        /// <summary>
+        /// Wrenchs contructor
+        /// </summary>
+        /// <param name="xPos"></param>
         public Wrench(int xPos)
         {
             this.xPos = xPos;
             random = new Random();
 
+            //decides the possible spawn loacations of the wrench
             positions[0] = (GameWorld.screenSize.X / 3) - 95;
             positions[1] = (GameWorld.screenSize.X / 2) - 47;
             positions[2] = (GameWorld.screenSize.X) - 126;
         }
+
+        /// <summary>
+        /// Loads Wrenchs sound effect, texture and calls for Respawn method
+        /// </summary>
+        /// <param name="content"></param> 
         public override void LoadContent(ContentManager content)
         {
 
@@ -34,9 +43,13 @@ namespace GhostDriver_
             Respawn();
         }
 
+        /// <summary>
+        /// decides what happens when wrench collides other gameobject
+        /// </summary>
+        /// <param name="other"></param>
         public override void OnCollision(GameObject other)
         {
-
+            //when other gameobject is player
             if (other is Player)
             {
                 GameWorld.lives++;
@@ -46,6 +59,10 @@ namespace GhostDriver_
 
         }
 
+        /// <summary>
+        /// calls the move method and destroys wrench when it moves off screen
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             Move(gameTime);
@@ -57,6 +74,9 @@ namespace GhostDriver_
 
 
         }
+        /// <summary>
+        /// spawns a new wrench on a random of the possible positions
+        /// </summary>
         public void Respawn()
         {
             position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
