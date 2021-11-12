@@ -9,18 +9,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GhostDriver_
 {
-    class Enemy : GameObject //work hard
+    class Enemy : GameObject                     // Make class for enemy
     {
-        private int xPos;     
-        private SoundEffectInstance effect;
-        ExplosionEffect explode;
+        private int xPos;                        //Make field for xPos - position of enemy
+        private SoundEffectInstance effect;      // Create sound effect for collision between enemy and player
+        ExplosionEffect explode;                 // Create sound explosion effect when enemy collide player
 
-        public Enemy(int xPos) 
+        public Enemy(int xPos)                  // Make constructor for Enemy
         {
             this.xPos = xPos;
             random = new Random();
 
-            positions[0] = (GameWorld.screenSize.X / 3) - 95;
+            positions[0] = (GameWorld.screenSize.X / 3) - 95; //Make posiotions for enemies
             positions[1] = (GameWorld.screenSize.X / 2) - 47;
             positions[2] = (GameWorld.screenSize.X) - 126;
 
