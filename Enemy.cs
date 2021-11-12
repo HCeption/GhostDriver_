@@ -60,6 +60,7 @@ namespace GhostDriver_
             if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
                 GameWorld.score++;
+                GameWorld.addSpawnAmount++;
                 Remove();
             }
             if (GameWorld.lives < 1) Remove();

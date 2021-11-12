@@ -31,6 +31,7 @@ namespace GhostDriver_
 
         private int[] safeSpawn = new int[3]; //Spawning logic.
         public static int spawnAmount;
+        public static int addSpawnAmount;
 
 
         public GameWorld()
@@ -78,11 +79,11 @@ namespace GhostDriver_
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (score > 10)
+            if (addSpawnAmount > 50)
             {
-                spawnAmount = 3 + score / 50;
+                addSpawnAmount = 0;
+                spawnAmount++;
             }
-            // TODO: Add your update logic here
 
             SpawnLogic();//-------------------------------------------------Spawn new cars via SPAWN LOGIC
 
