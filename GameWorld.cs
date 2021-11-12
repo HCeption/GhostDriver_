@@ -135,7 +135,7 @@ namespace GhostDriver_
                 }
                 speed = 0;
                 roadSpeed = 0;
-                MediaPlayer.Pause();
+                if (sound) MediaPlayer.Pause();
 
 
                 if (keyState.IsKeyDown(Keys.R)) //Restart game
@@ -273,9 +273,9 @@ namespace GhostDriver_
                     newObjects.Add(new Enemy(spawnRandom)); //Create enemy at chosen random pos
 
                     if (score < 400) safeSpawn[spawnRandom] = rnd.Next(10000, 50000 - score * 100); //Apply 'cooldown' to chosen position. (used to read if available, and prevent car spam)
-                    else safeSpawn[spawnRandom] = rnd.Next(6000, 10000); //Cheater detected. Spam cars like no tomorrow.
+                    else safeSpawn[spawnRandom] = 6000; //Cheater detected. Spam cars like no tomorrow.
 
-                    if (score > 400 && score < 406) spawnAmount = 20;
+                    if (score > 400 && score < 406) spawnAmount = 30;
 
 
                     spawnAmount--; //Car has spawned, remove from 'queue'
