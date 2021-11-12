@@ -24,9 +24,10 @@ namespace GhostDriver_
         KeyboardState keyState;
 
 
+
         private int roadPos;
         public static float gameScale = 0.5f;
-        private int roadSpeed = (int)(15 * gameScale);
+        public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
 
 
@@ -104,20 +105,23 @@ namespace GhostDriver_
                 gameObjects.Remove(go);
             }
             deleteObjects.Clear();
-
+            KeyboardState keyState = Keyboard.GetState();
             if  (lives < 1)
             {
                 
                 speed = 0;
                 roadSpeed = 0;
-                if (keyState.IsKeyDown(Keys.R) == true)
+                if (keyState.IsKeyDown(Keys.R))
                 {
                     lives = 3;
-                    speed = (int)(600 * GameWorld.gameScale);
+                    speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
+                    score = 0;
 
                 }
+
             }
+
 
             base.Update(gameTime);
         }
