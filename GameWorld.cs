@@ -264,7 +264,7 @@ namespace GhostDriver_
                 byte availableAmount = 0; //Used to see the amount of availble spawn positions.
 
                 for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++; //Calculates available spawn positions.
-                if (availableAmount < 2) break; //If only 1 spawn pos is available, dont spawn anything (break)
+                if (availableAmount < 2 && score < 400) break; //If only 1 spawn pos is available, dont spawn anything (break), disable if over 400 score
 
 
                 spawnRandom = (byte)rnd.Next(0, 3); //Create random pos
@@ -273,7 +273,9 @@ namespace GhostDriver_
                     newObjects.Add(new Enemy(spawnRandom)); //Create enemy at chosen random pos
 
                     if (score < 400) safeSpawn[spawnRandom] = rnd.Next(10000, 50000 - score * 100); //Apply 'cooldown' to chosen position. (used to read if available, and prevent car spam)
-                    else safeSpawn[spawnRandom] = rnd.Next(6000,10000); //Cheater detected. Spam cars like no tomorrow.
+                    else safeSpawn[spawnRandom] = rnd.Next(6000, 10000); //Cheater detected. Spam cars like no tomorrow.
+
+                    if (score > 400 && score < 406) spawnAmount = 20;
 
 
                     spawnAmount--; //Car has spawned, remove from 'queue'
