@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
@@ -28,6 +29,8 @@ namespace GhostDriver_
         public static float gameScale = 0.5f;
         public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
+        private Song music;
+
 
         private int[] safeSpawn = new int[3]; //Spawning logic.
         public static int spawnAmount;
@@ -68,7 +71,9 @@ namespace GhostDriver_
             road = Content.Load<Texture2D>("Road_Texture");
             CollisionTexture = Content.Load<Texture2D>("CollisionTexture");
             text = Content.Load<SpriteFont>("File");
-
+            MediaPlayer.IsRepeating = true;
+            Song music = Content.Load<Song>("Background");
+            MediaPlayer.Play(music);
             foreach (GameObject go in gameObjects)
             {
                 if (go is Enemy) go.LoadContent(Content);
