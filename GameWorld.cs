@@ -33,6 +33,8 @@ namespace GhostDriver_
         public static int spawnAmount;
         public static int addSpawnAmount;
 
+        
+
 
         public GameWorld()
         {
