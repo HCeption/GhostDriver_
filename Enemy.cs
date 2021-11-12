@@ -56,27 +56,27 @@ namespace GhostDriver_
         public override void Update(GameTime gameTime)           //Override Update method
         {
             Move(gameTime);                                     // Call move method
-
+            // Logic for enemy position on the screen
             if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
                 GameWorld.score++;
                 GameWorld.addSpawnAmount++;
                 Remove();
             }
-            if (GameWorld.lives < 1) Remove();
+            if (GameWorld.lives < 1) Remove();                 //Remove enemy logic
 
         }
-        public void Create()
+        public void Create()                                    // Make Create method
         {
-            int index = random.Next(0, sprites.Length);
+            int index = random.Next(0, sprites.Length);        // Make random enemy posiosion on the screen
             drawSprite = sprites[index];
             position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
             velocity = new Vector2(0, 1);
-            GameWorld.speed = 400 + (GameWorld.score) * 3;
-            if (GameWorld.speed > 600) GameWorld.speed = 600;
+            GameWorld.speed = 400 + (GameWorld.score) * 3;     //Make speed for enemy
+            if (GameWorld.speed > 600) GameWorld.speed = 600;  //Make max speed for enemy
 
         }
-        private void Remove()
+        private void Remove()                                   // Create Remove method
         {
             GameWorld.Destroy(this);
             GameWorld.spawnAmount++;
