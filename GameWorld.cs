@@ -51,7 +51,7 @@ namespace GhostDriver_
 
             //wrench = new Wrench();
             //newObjects.Add(wrench);
-            spawnAmount = 3;
+            spawnAmount = 2;
 
 
             base.Initialize();
