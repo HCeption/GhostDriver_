@@ -44,7 +44,6 @@ namespace GhostDriver_
             }
         }
 
-
         /// <summary>
         /// handels the users input and moves player accordingly
         /// </summary>
