@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace GhostDriver_
 {
-    public class GameWorld : Game
+    public class GameWorld : Game //work hard
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
