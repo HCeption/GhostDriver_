@@ -182,7 +182,7 @@ namespace GhostDriver_
                     {
                         stringTemp = "HOW ARE YOU STILL ALIVE!?";
                         stringSize = text.MeasureString(stringTemp);
-                        spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 6)), Color.Yellow, 0, new Vector2(0, 0), 1.5f, 0, 0);
+                        spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / (float)1.5f - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 6)), Color.Yellow, 0, new Vector2(0, 0), 1.5f, 0, 0);
                     }
                 }
             }
