@@ -26,7 +26,11 @@ namespace GhostDriver_
 
 
         }
-        public override void LoadContent(ContentManager content)  //Override LoadeContent method
+        /// <summary>
+        /// Override LoadeContent method
+        /// </summary>
+        /// <param name="content"></param>
+        public override void LoadContent(ContentManager content)  
         {
             sprites = new Texture2D[6];
 
@@ -40,8 +44,11 @@ namespace GhostDriver_
 
             Create();                                              // Use Create method
         }
-
-        public override void OnCollision(GameObject other)         //Override OnCollision method
+        /// <summary>
+        /// Override OnCollision method
+        /// </summary>
+        /// <param name="other"></param>
+        public override void OnCollision(GameObject other)         
         {
             if (other is Player)                                  //Make logic in this method
             {
@@ -52,8 +59,11 @@ namespace GhostDriver_
                 Remove();                                         // Remove all
             }
         }
-
-        public override void Update(GameTime gameTime)           //Override Update method
+        /// <summary>
+        /// Override Update method
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public override void Update(GameTime gameTime)           
         {
             Move(gameTime);                                     // Call move method
             // Logic for enemy position on the screen
@@ -66,7 +76,10 @@ namespace GhostDriver_
             if (GameWorld.lives < 1) Remove();                 //Remove enemy logic
 
         }
-        public void Create()                                    // Make Create method
+        /// <summary>
+        /// Make Create method
+        /// </summary>
+        public void Create()                                    
         {
             int index = random.Next(0, sprites.Length);        // Make random enemy posiosion on the screen
             drawSprite = sprites[index];
@@ -76,7 +89,10 @@ namespace GhostDriver_
             if (GameWorld.speed > 600) GameWorld.speed = 600;  //Make max speed for enemy
 
         }
-        private void Remove()                                   // Create Remove method
+        /// <summary>
+        /// Create Remove method
+        /// </summary>
+        private void Remove()                                  
         {
             GameWorld.Destroy(this);
             GameWorld.spawnAmount++;
