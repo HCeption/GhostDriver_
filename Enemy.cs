@@ -45,17 +45,17 @@ namespace GhostDriver_
         {
             if (other is Player)                                  //Make logic in this method
             {
-                explode = new ExplosionEffect(position);          // Set explosion effect
-                GameWorld.AddObject(explode);                     //
-                effect.Play();                                    //
-                GameWorld.lives--;                                //
-                Remove();                                         //
+                explode = new ExplosionEffect(position);          // Call explosion constructor
+                GameWorld.AddObject(explode);                     // Add explosion effect
+                effect.Play();                                    // Play effect
+                GameWorld.lives--;                                // Lost live
+                Remove();                                         // Remove all
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)           //Override Update method
         {
-            Move(gameTime);
+            Move(gameTime);                                     // Call move method
 
             if (position.Y - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset) > GameWorld.screenSize.Y)
             {
