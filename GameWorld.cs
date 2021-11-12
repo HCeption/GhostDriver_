@@ -114,7 +114,12 @@ namespace GhostDriver_
             deleteObjects.Clear();
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.P)) lives++; //Debug gem kept ingame for those that like that
+            if (keyState.IsKeyDown(Keys.L)) lives++; //Debug gem kept ingame for those that like that
+            if (keyState.IsKeyDown(Keys.P)) 
+            {
+                score++;
+                addSpawnAmount++;
+            }
             if (keyState.IsKeyDown(Keys.V) && soundTap == true) //Toggle music and sounds
             {
                 if (sound == false) sound = true;
