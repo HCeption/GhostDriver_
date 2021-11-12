@@ -30,14 +30,11 @@ namespace GhostDriver_
         public static float gameScale = 0.5f;
         public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
-        private Song music;
 
 
         private int[] safeSpawn = new int[3]; //Spawning logic.
         public static int spawnAmount;
         public static int addSpawnAmount;
-
-        private SoundEffectInstance vroom;
 
 
         public GameWorld()
@@ -122,7 +119,7 @@ namespace GhostDriver_
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.P)) lives++;
-                if  (lives < 1)
+            if  (lives < 1)
             {
                 if (score > highScore)
                 {
