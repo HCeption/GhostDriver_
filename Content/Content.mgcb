@@ -25,12 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:Audi.png
 
-#begin Background.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Background.mp3
-
 #begin Background.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
