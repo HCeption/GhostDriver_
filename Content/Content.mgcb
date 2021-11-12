@@ -31,6 +31,12 @@
 /processorParam:TextureFormat=Color
 /build:Audi.png
 
+#begin Background.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Background.wav
+
 #begin Black_viper.png
 /importer:TextureImporter
 /processor:TextureProcessor
