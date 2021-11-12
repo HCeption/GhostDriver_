@@ -69,7 +69,7 @@ namespace GhostDriver_
         public override void LoadContent(ContentManager content)
         {
             drawSprite = content.Load<Texture2D>("Black_viper");
-            vroom = content.Load<SoundEffect>("Accelerate").CreateInstance();
+            //vroom = content.Load<SoundEffect>("Accelerate").CreateInstance();
         }
         public override void OnCollision(GameObject other)
         {
