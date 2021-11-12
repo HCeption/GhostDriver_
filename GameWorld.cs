@@ -27,6 +27,8 @@ namespace GhostDriver_
         public static int score;
         public static int speed;
         private int highScore;
+        public static bool sound = false; //Play soundeffects and music.
+        private bool soundTap = true; //Used to prevent music spam.
 
         private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
@@ -66,6 +68,7 @@ namespace GhostDriver_
             MediaPlayer.IsRepeating = true;
             Song music = Content.Load<Song>("Background");
             MediaPlayer.Play(music);
+            MediaPlayer.Pause(); //Start, and pause music. Toggable later in the code.
 
             foreach (GameObject go in gameObjects) //Preload all content. Enemies are added later, but its a good failsafe too.
             {
@@ -96,7 +99,7 @@ namespace GhostDriver_
                 }
 
             }
-            
+
 
 
             foreach (var go in newObjects) //Add the new objects from AddObject method
@@ -113,6 +116,16 @@ namespace GhostDriver_
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.P)) lives++; //Debug gem kept ingame for those that like that
+            if (keyState.IsKeyDown(Keys.V) && soundTap == true) //Toggle music and sounds
+            {
+                if (sound == false) sound = true;
+                else sound = false;
+                soundTap = false;
+
+                if (sound) MediaPlayer.Resume(); //if sound on, resume playing
+                else MediaPlayer.Pause(); //if off stop playing
+            }
+            if (keyState.IsKeyUp(Keys.V)) soundTap = true; //prevent running each time.
 
             if (lives < 1) //If dead, pause all logic in the game.
             {
@@ -153,7 +166,8 @@ namespace GhostDriver_
             }
             if (lives > 0) //If alive, draw screen info
             {
-                spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h", new Vector2(0, 0), Color.White);
+                if (sound) spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\nSound (v): On", new Vector2(0, 0), Color.White);
+                else spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\nSound (v): Off", new Vector2(0, 0), Color.White);
             }
             if (lives < 1) //If dead, call EndScreen draw method.
             {

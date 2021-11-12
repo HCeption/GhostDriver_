@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GhostDriver_
 {
-    class Player : GameObject  
+    class Player : GameObject
     {
         private SoundEffectInstance vroom;
 
@@ -56,7 +56,7 @@ namespace GhostDriver_
             if (keyState.IsKeyDown(Keys.W))
             {
                 velocity += new Vector2(0, -1);
-                vroom.Play();
+                if (GameWorld.sound) vroom.Play();
             }
             if (keyState.IsKeyDown(Keys.S)) velocity += new Vector2(0, 1);
             if (keyState.IsKeyDown(Keys.A)) velocity += new Vector2(-1, 0);

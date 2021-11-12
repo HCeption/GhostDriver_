@@ -54,7 +54,7 @@ namespace GhostDriver_
             {
                 explode = new ExplosionEffect(position);          // Call explosion constructor
                 GameWorld.AddObject(explode);                     // Add explosion effect
-                effect.Play();                                    // Play effect
+                if(GameWorld.sound)effect.Play();                 // Play effect if sound is on
                 GameWorld.lives--;                                // Lost live
                 Remove();                                         // Remove all
             }

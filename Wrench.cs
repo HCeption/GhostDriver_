@@ -38,7 +38,7 @@ namespace GhostDriver_
             drawSprite = content.Load<Texture2D>("wrench");
 
             //drawSpriteWrench = content.Load<Texture2D>("wrench");
-            wrenchSound = content.Load<SoundEffect>("wrench_sound").CreateInstance();
+            if (GameWorld.sound) wrenchSound = content.Load<SoundEffect>("wrench_sound").CreateInstance();
 
             Respawn();
         }
