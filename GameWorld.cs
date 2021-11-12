@@ -113,7 +113,8 @@ namespace GhostDriver_
             deleteObjects.Clear();
 
             KeyboardState keyState = Keyboard.GetState();
-            if  (lives < 1)
+            if (keyState.IsKeyDown(Keys.P)) lives++;
+                if  (lives < 1)
             {
                 if (score > highScore)
                 {
@@ -224,7 +225,7 @@ namespace GhostDriver_
                 if (safeSpawn[spawnRandom] == 0) //if random pos is available
                 {
                     newObjects.Add(new Enemy(spawnRandom)); //Create enemy at chosen random pos
-                    safeSpawn[spawnRandom] = rnd.Next(10000, 50000);
+                    safeSpawn[spawnRandom] = rnd.Next(10000, 50000-score*100);
                     spawnAmount--;
                 }
             }
