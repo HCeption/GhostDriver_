@@ -328,7 +328,7 @@ namespace GhostDriver_
             string stringTemp = $"        GAME OVER\nYou Achived a score of\n                 -{score}-\n with a highscore of\n                 -{highScore}-";
             Vector2 stringSize = text.MeasureString(stringTemp);
             spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 - (int)(stringSize.Y * 1.5)), Color.Red, 0, new Vector2(0, 0), 2f, 0, 0);
-            stringTemp = "Press \"r\" to retry";
+            stringTemp = "Press \"R\" to retry";
             stringSize = text.MeasureString(stringTemp);
             spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 2.5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
         }
