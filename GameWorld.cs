@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
@@ -36,7 +37,7 @@ namespace GhostDriver_
         public static int spawnAmount;
         public static int addSpawnAmount;
 
-        
+        private SoundEffectInstance vroom;
 
 
         public GameWorld()
