@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GhostDriver_
 {
-    class ExplosionEffect : GameObject  //work hard
+    class ExplosionEffect : GameObject
     {
         private static Texture2D[] explosion = new Texture2D[8];
         private float explosionFPS = 0;
