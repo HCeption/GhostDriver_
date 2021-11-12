@@ -11,6 +11,8 @@ namespace GhostDriver_
     class Wrench : GameObject
     {
         private int xPos;
+        private SoundEffectInstance wrenchSound;
+
 
         public Wrench(int xPos)
         {
@@ -27,6 +29,7 @@ namespace GhostDriver_
             drawSprite = content.Load<Texture2D>("wrench");
 
             //drawSpriteWrench = content.Load<Texture2D>("wrench");
+            wrenchSound = content.Load<SoundEffect>("wrench_sound").CreateInstance();
 
             Respawn();
         }
@@ -38,6 +41,7 @@ namespace GhostDriver_
             {
                 GameWorld.lives++;
                 GameWorld.Destroy(this);
+                wrenchSound.Play();
             }
 
         }
@@ -57,7 +61,6 @@ namespace GhostDriver_
         {
             position = new Vector2(positions[xPos], 0 - drawSprite.Height * (GameWorld.gameScale + GameWorld.scaleOffset));
             velocity = new Vector2(0, 1);
-
 
         }
     }
