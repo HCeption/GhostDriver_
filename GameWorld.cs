@@ -13,7 +13,7 @@ namespace GhostDriver_
         private Texture2D road;
         private Player player;
         private List<GameObject> gameObjects = new List<GameObject>();
-        private static List<GameObject> newObjects = new List<GameObject>(); 
+        private static List<GameObject> newObjects = new List<GameObject>();
         private static List<GameObject> deleteObjects = new List<GameObject>();
         public static Vector2 screenSize;
         private Texture2D CollisionTexture;
@@ -21,14 +21,15 @@ namespace GhostDriver_
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
-        private int highScore;
 
 
-
-        private int roadPos;
+        private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
         public static  int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
+
+        private int[] safeSpawn = new int[3]; //Spawning logic.
+        public static int spawnAmount;
 
 
         public GameWorld()
@@ -105,10 +106,10 @@ namespace GhostDriver_
                 gameObjects.Remove(go);
             }
             deleteObjects.Clear();
-            KeyboardState keyState = Keyboard.GetState();
+
             if  (lives < 1)
             {
-                
+
                 speed = 0;
                 roadSpeed = 0;
                 if (keyState.IsKeyDown(Keys.R))
@@ -194,9 +195,6 @@ namespace GhostDriver_
         {
             newObjects.Add(go);
         }
-
-        private int[] safeSpawn = new int[3];
-        public static int spawnAmount;
         private void SpawnLogic()
         {
             Random rnd = new Random();
@@ -206,10 +204,9 @@ namespace GhostDriver_
             while (spawnAmount > 0)
             {
                 byte availableAmount = 0;
-                Console.WriteLine($"i run {temp} times, spawning {spawnAmount}, in slots: {availableAmount}");
                 temp++;
 
-                for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++;
+                for (int i = 0; i < 3; i++) if(safeSpawn[i] == 0) availableAmount++;
                 if (availableAmount < 2) break;
 
 
