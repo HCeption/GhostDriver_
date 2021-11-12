@@ -139,7 +139,7 @@ namespace GhostDriver_
                 }
                 speed = 0;
                 roadSpeed = 0;
-                if (sound) MediaPlayer.Pause();
+                MediaPlayer.Pause();
 
 
                 if (keyState.IsKeyDown(Keys.R)) //Restart game
@@ -148,7 +148,7 @@ namespace GhostDriver_
                     speed = (int)(600 * gameScale);
                     roadSpeed = (int)(15 * gameScale);
                     score = 0;
-                    MediaPlayer.Resume();
+                    if (sound) MediaPlayer.Resume();
                 }
             }
 
@@ -182,7 +182,7 @@ namespace GhostDriver_
                     {
                         stringTemp = "HOW ARE YOU STILL ALIVE!?";
                         stringSize = text.MeasureString(stringTemp);
-                        spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+                        spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 6)), Color.Yellow, 0, new Vector2(0, 0), 1.5f, 0, 0);
                     }
                 }
             }
