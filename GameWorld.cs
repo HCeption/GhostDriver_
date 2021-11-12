@@ -51,7 +51,7 @@ namespace GhostDriver_
 
             //wrench = new Wrench();
             //newObjects.Add(wrench);
-            spawnAmount = 4;
+            spawnAmount = 3;
 
 
             base.Initialize();
@@ -78,7 +78,10 @@ namespace GhostDriver_
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            if (score > 100)
+            {
+                spawnAmount = 3 + score / 50;
+            }
             // TODO: Add your update logic here
 
             SpawnLogic();//-------------------------------------------------Spawn new cars via SPAWN LOGIC
