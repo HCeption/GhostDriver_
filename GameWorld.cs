@@ -131,6 +131,7 @@ namespace GhostDriver_
                 speed = 0;
                 roadSpeed = 0;
                 
+                
 
                 if (keyState.IsKeyDown(Keys.R))
                 {
