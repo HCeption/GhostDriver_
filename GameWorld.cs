@@ -49,7 +49,6 @@ namespace GhostDriver_
         {
             GameScale();
 
-
             player = new Player();
             gameObjects.Add(player);
 
@@ -168,6 +167,19 @@ namespace GhostDriver_
             {
                 if (sound) spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\nSound (v): On", new Vector2(0, 0), Color.White);
                 else spriteBatch.DrawString(text, $"Score: {score}\nLives: {lives}\nSpeed: {speed / 2} Km/h\n\nSound (v): Off", new Vector2(0, 0), Color.White);
+
+                if (score > 400)
+                {
+                    string stringTemp = "How did you even do this?";
+                    Vector2 stringSize = text.MeasureString(stringTemp);
+                    spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 4)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+                    if (score > 800)
+                    {
+                        stringTemp = "HOW ARE YOU STILL ALIVE!?";
+                        stringSize = text.MeasureString(stringTemp);
+                        spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+                    }
+                }
             }
             if (lives < 1) //If dead, call EndScreen draw method.
             {
@@ -265,6 +277,7 @@ namespace GhostDriver_
 
                 for (int i = 0; i < 3; i++) if (safeSpawn[i] == 0) availableAmount++; //Calculates available spawn positions.
                 if (availableAmount < 2 && score < 400) break; //If only 1 spawn pos is available, dont spawn anything (break), disable if over 400 score
+                else if (availableAmount < 1 && score > 400) break;
 
 
                 spawnRandom = (byte)rnd.Next(0, 3); //Create random pos
