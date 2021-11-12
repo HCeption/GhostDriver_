@@ -113,7 +113,8 @@ namespace GhostDriver_
             deleteObjects.Clear();
 
             KeyboardState keyState = Keyboard.GetState();
-            if  (lives < 1)
+            if (keyState.IsKeyDown(Keys.P)) lives++;
+                if  (lives < 1)
             {
                 if (score > highScore)
                 {
