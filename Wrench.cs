@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace GhostDriver_
 {
-    class Wrench : GameObject
+    class Wrench : GameObject //work hard
     {
         private int xPos;
         private SoundEffectInstance wrenchSound;
