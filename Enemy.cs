@@ -62,6 +62,7 @@ namespace GhostDriver_
                 GameWorld.score++;
                 Remove();
             }
+            if (GameWorld.lives < 1) GameWorld.Destroy(this);
 
         }
         public void Create()
