@@ -11,6 +11,7 @@ namespace GhostDriver_
 {
     class Player : GameObject
     {
+        private SoundEffectInstance vroom;
         public Player()
         {
             position = new Vector2(150, 700);
@@ -44,7 +45,11 @@ namespace GhostDriver_
 
             KeyboardState keyState = Keyboard.GetState();
 
-            if (keyState.IsKeyDown(Keys.W)) velocity += new Vector2(0, -1);
+            if (keyState.IsKeyDown(Keys.W))
+            {
+                velocity += new Vector2(0, -1);
+                vroom.Play();
+            }
             if (keyState.IsKeyDown(Keys.S)) velocity += new Vector2(0, 1);
             if (keyState.IsKeyDown(Keys.A)) velocity += new Vector2(-1, 0);
             if (keyState.IsKeyDown(Keys.D)) velocity += new Vector2(1, 0);
@@ -64,6 +69,7 @@ namespace GhostDriver_
         public override void LoadContent(ContentManager content)
         {
             drawSprite = content.Load<Texture2D>("Black_viper");
+            vroom = content.Load<SoundEffect>("Accelerate").CreateInstance();
         }
         public override void OnCollision(GameObject other)
         {
