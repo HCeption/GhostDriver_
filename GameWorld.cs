@@ -21,7 +21,7 @@ namespace GhostDriver_
         public static int lives = 3;
         public static int score;
         public static int speed = (int)(600 * GameWorld.gameScale);
-        KeyboardState keyState;
+        private int highScore;
 
 
 
@@ -243,7 +243,7 @@ namespace GhostDriver_
         }
         private void EndScreen()
         {
-            string stringTemp = $"        GAME OVER\nYou Achived a score of\n                 -{score}-";
+            string stringTemp = $"        GAME OVER\nYou Achived a score of\n                 -{score}-\n with a highscore of\n                 -{highScore}-";
             Vector2 stringSize = text.MeasureString(stringTemp);
             spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 - (int)(stringSize.Y * 1.5)), Color.Red, 0, new Vector2(0, 0), 2f, 0, 0);
             stringTemp = "Press \"r\" to retry";
