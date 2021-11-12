@@ -12,11 +12,14 @@ namespace GhostDriver_
     class Player : GameObject  
     {
         private SoundEffectInstance vroom;
+
+        //players contructor
         public Player()
         {
             position = new Vector2(150, 700);
         }
 
+        //limits the players movement to not leave the screen
         private void ScreenLimits()
         {
             if (position.Y < 0)
@@ -38,7 +41,7 @@ namespace GhostDriver_
         }
 
 
-
+        //handels the users input and moves player accordingly
         private void HandleInput()
         {
             velocity = Vector2.Zero;
@@ -58,6 +61,7 @@ namespace GhostDriver_
 
         }
 
+        //calls the needed methods
         public override void Update(GameTime gameTime)
         {
             HandleInput();
@@ -65,18 +69,16 @@ namespace GhostDriver_
             ScreenLimits();
         }
 
-
+        //loads player texture and sound effect
         public override void LoadContent(ContentManager content)
         {
             drawSprite = content.Load<Texture2D>("Black_viper");
             vroom = content.Load<SoundEffect>("Accelerate").CreateInstance();
         }
+
+        //decides what happens when players hitbox collides with another hitbox
         public override void OnCollision(GameObject other)
         {
-            if (other is Wrench)
-            {
-                //repair.Play();
-            }
         }
 
     }
