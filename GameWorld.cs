@@ -32,7 +32,7 @@ namespace GhostDriver_
 
         private int roadPos; //Game score, scale, and speeds
         public static float gameScale = 0.5f;
-        public static int roadSpeed = (int)(15 * gameScale);
+        private static int roadSpeed = (int)(15 * gameScale);
         public static float scaleOffset = .30f;
 
         private int[] safeSpawn = new int[3]; //Spawning logic.
@@ -218,7 +218,6 @@ namespace GhostDriver_
         /// <summary>
         /// Draw the moving road
         /// </summary>
-        /// 
         void RollingRoadDraw()
         {
             spriteBatch.Draw(road, new Vector2(0, roadPos), null, Color.White, 0, Vector2.Zero, gameScale, SpriteEffects.None, 0);
