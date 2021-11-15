@@ -28,9 +28,8 @@ namespace GhostDriver_
         }
 
         /// <summary>
-        /// decides what happens when explosionEffect collides woth something, which is nothing
+        /// INACTIVE
         /// </summary>
-        /// <param name="other"></param>
         public override void OnCollision(GameObject other) { }
 
         /// <summary>
