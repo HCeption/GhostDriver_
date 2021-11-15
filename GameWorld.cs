@@ -105,10 +105,7 @@ namespace GhostDriver_
                     {
                         gameObject.CheckCollision(other);
                     }
-
                 }
-
-
 
                 foreach (var go in newObjects) //Add the new objects from AddObject method
                 {
