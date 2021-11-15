@@ -41,7 +41,6 @@ namespace GhostDriver_
             explosionFPS += .25f; // 4 frames pr explosion image
             if (explosionFPS > 7) GameWorld.Destroy(this);
             drawSprite = explosion[(int)explosionFPS];
-
         }
     }
 }

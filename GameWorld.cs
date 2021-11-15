@@ -151,6 +151,8 @@ namespace GhostDriver_
                     if (keyState.IsKeyDown(Keys.R)) //Restart game
                     {
                         lives = 3;
+                        spawnAmount = 2;
+                        addSpawnAmount = 0;
                         speed = (int)(600 * gameScale);
                         roadSpeed = (int)(15 * gameScale);
                         score = 0;
