@@ -39,6 +39,8 @@ namespace GhostDriver_
         public static int spawnAmount;
         public static int addSpawnAmount;
 
+        private static bool start = false; //startmenu stuff
+
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -51,10 +53,6 @@ namespace GhostDriver_
 
             player = new Player();
             gameObjects.Add(player);
-
-            spawnAmount = 2; // Initial game difficulty by spawning only 2 cars (enemies).
-
-
             base.Initialize();
         }
         protected override void LoadContent()
@@ -78,88 +76,97 @@ namespace GhostDriver_
         }
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            if (addSpawnAmount > 50)
+            if (!start)
             {
-                addSpawnAmount = 0;
-                spawnAmount++;
-            }
-
-            SpawnLogic();//Spawn new cars via SPAWN LOGIC
-            RollingRoadUpdate();//Update the rolling road (background road)
-
-            foreach (var gameObject in gameObjects) //Main update loop
-            {
-                gameObject.Update(gameTime); //Call each subclasses' update method, wherein they call for Move and all sorts methods.
-                foreach (var other in gameObjects) //Collision checking loop
+                KeyboardState keyState = Keyboard.GetState();
+                if (keyState.IsKeyDown(Keys.B))
                 {
-                    gameObject.CheckCollision(other);
-                }
-
-            }
-
-
-
-            foreach (var go in newObjects) //Add the new objects from AddObject method
-            {
-                go.LoadContent(Content);
-                gameObjects.Add(go);
-            }
-            newObjects.Clear();
-            foreach (GameObject go in deleteObjects) //Delete cars on collision.
-            {
-                gameObjects.Remove(go);
-            }
-            deleteObjects.Clear();
-
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.L)) lives++; //Debug gem kept ingame for those that like that
-            if (keyState.IsKeyDown(Keys.P)) 
-            {
-                score++;
-                addSpawnAmount++;
-            }
-            if (keyState.IsKeyDown(Keys.V) && soundTap == true) //Toggle music and sounds
-            {
-                if (sound == false) sound = true;
-                else sound = false;
-                soundTap = false;
-
-                if (sound) MediaPlayer.Resume(); //if sound on, resume playing
-                else MediaPlayer.Pause(); //if off stop playing
-            }
-            if (keyState.IsKeyUp(Keys.V)) soundTap = true; //prevent running each time.
-
-            if (lives < 1) //If dead, pause all logic in the game.
-            {
-                if (score > highScore) //Set new highscore
-                {
-                    highScore = score;
-                }
-                speed = 0;
-                roadSpeed = 0;
-                MediaPlayer.Pause();
-
-
-                if (keyState.IsKeyDown(Keys.R)) //Restart game
-                {
-                    lives = 3;
-                    speed = (int)(600 * gameScale);
-                    roadSpeed = (int)(15 * gameScale);
-                    score = 0;
-                    if (sound) MediaPlayer.Resume();
+                    start = true;
+                    spawnAmount = 2;
                 }
             }
+            else //If start is true, run the game.
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
+                if (addSpawnAmount > 50)
+                {
+                    addSpawnAmount = 0;
+                    spawnAmount++;
+                }
+
+                SpawnLogic();//Spawn new cars via SPAWN LOGIC
+                RollingRoadUpdate();//Update the rolling road (background road)
+
+                foreach (var gameObject in gameObjects) //Main update loop
+                {
+                    gameObject.Update(gameTime); //Call each subclasses' update method, wherein they call for Move and all sorts methods.
+                    foreach (var other in gameObjects) //Collision checking loop
+                    {
+                        gameObject.CheckCollision(other);
+                    }
+
+                }
 
 
+
+                foreach (var go in newObjects) //Add the new objects from AddObject method
+                {
+                    go.LoadContent(Content);
+                    gameObjects.Add(go);
+                }
+                newObjects.Clear();
+                foreach (GameObject go in deleteObjects) //Delete cars on collision.
+                {
+                    gameObjects.Remove(go);
+                }
+                deleteObjects.Clear();
+
+                KeyboardState keyState = Keyboard.GetState();
+                if (keyState.IsKeyDown(Keys.L)) lives++; //Debug gem kept ingame for those that like that
+                if (keyState.IsKeyDown(Keys.P))
+                {
+                    score++;
+                    addSpawnAmount++;
+                }
+                if (keyState.IsKeyDown(Keys.V) && soundTap == true) //Toggle music and sounds
+                {
+                    if (sound == false) sound = true;
+                    else sound = false;
+                    soundTap = false;
+
+                    if (sound) MediaPlayer.Resume(); //if sound on, resume playing
+                    else MediaPlayer.Pause(); //if off stop playing
+                }
+                if (keyState.IsKeyUp(Keys.V)) soundTap = true; //prevent running each time.
+
+                if (lives < 1) //If dead, pause all logic in the game.
+                {
+                    if (score > highScore) //Set new highscore
+                    {
+                        highScore = score;
+                    }
+                    speed = 0;
+                    roadSpeed = 0;
+                    MediaPlayer.Pause();
+
+
+                    if (keyState.IsKeyDown(Keys.R)) //Restart game
+                    {
+                        lives = 3;
+                        speed = (int)(600 * gameScale);
+                        roadSpeed = (int)(15 * gameScale);
+                        score = 0;
+                        if (sound) MediaPlayer.Resume();
+                    }
+                }
+            }
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
 
             RollingRoadDraw();
 
@@ -190,9 +197,10 @@ namespace GhostDriver_
             {
                 EndScreen();
             }
+
+            StartScreen(); //Draws the start screen (to avoid instantly losing life upon start)
+
             spriteBatch.End();
-
-
             base.Draw(gameTime);
         }
 
@@ -331,6 +339,16 @@ namespace GhostDriver_
             stringTemp = "Press \"R\" to retry";
             stringSize = text.MeasureString(stringTemp);
             spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 + (int)(stringSize.Y * 2.5)), Color.Yellow, 0, new Vector2(0, 0), 2f, 0, 0);
+        }
+        private void StartScreen()
+        {
+            if (!start)
+            {
+                Console.WriteLine("I draw");
+                string stringTemp = "Press \"B\" to start";
+                Vector2 stringSize = text.MeasureString(stringTemp);
+                spriteBatch.DrawString(text, stringTemp, new Vector2(screenSize.X / 2 - stringSize.X, screenSize.Y / 2 - stringSize.Y), Color.White, 0, Vector2.Zero, 2f, 0, 0);
+            }
         }
     }
 }
