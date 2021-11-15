@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GhostDriver_.Enemy">
-    <Position X="8" Y="7.25" Width="1.5" />
+  <Class Name="GhostDriver_.Enemy" Collapsed="true">
+    <Position X="4.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQACAAAAAAAAAAACAAABAAAAAAAAMAAIAAAAAAAAAQ=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.ExplosionEffect">
-    <Position X="12.5" Y="7.25" Width="1.5" />
+  <Class Name="GhostDriver_.ExplosionEffect" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAQAAAAAAAAAAAAAAAABAAAIAAAAAAAAAQ=</HashCode>
       <FileName>ExplosionEffect.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.GameObject">
-    <Position X="11.25" Y="2.25" Width="1.5" />
+  <Class Name="GhostDriver_.GameObject" Collapsed="true">
+    <Position X="9.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAQAAAAIAAAgAAAAABIAAAAAAAAACAIAQAAACAQBQ=</HashCode>
       <FileName>GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.GameWorld">
-    <Position X="16.5" Y="1.75" Width="1.5" />
+  <Class Name="GhostDriver_.GameWorld" Collapsed="true">
+    <Position X="17.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYEAEAACEIAJwAgBCAIwCBApAJEgQwpAAIAAAQAAAQ=</HashCode>
       <FileName>GameWorld.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.Player">
-    <Position X="14.75" Y="7.25" Width="1.5" />
+  <Class Name="GhostDriver_.Player" Collapsed="true">
+    <Position X="12" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABQAAACAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAQ=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.Program">
-    <Position X="14" Y="3.75" Width="1.5" />
+  <Class Name="GhostDriver_.Program" Collapsed="true">
+    <Position X="19" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GhostDriver_.Wrench">
-    <Position X="10.25" Y="7.25" Width="1.5" />
+  <Class Name="GhostDriver_.Wrench" Collapsed="true">
+    <Position X="14.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAEAAABAAAAIAAIAAAAAAAAAQ=</HashCode>
       <FileName>Wrench.cs</FileName>
