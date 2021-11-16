@@ -211,7 +211,7 @@ namespace GhostDriver_
         void RollingRoadUpdate()
         {
             roadPos += roadSpeed;
-            if (roadPos > road.Height * gameScale) roadPos = 0;
+            if (roadPos > screenSize.Y) roadPos = 0;
         }
 
         /// <summary>
